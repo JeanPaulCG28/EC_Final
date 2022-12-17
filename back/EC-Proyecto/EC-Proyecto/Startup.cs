@@ -34,6 +34,17 @@ namespace EC_Proyecto
                 options => options.UseSqlServer(
                 Configuration.GetConnectionString("defaultConnection")));
 
+            services.AddCors(
+               options => {
+                   var frontendurl = Configuration
+                   .GetValue<string>("frontend_url");
+                   options.AddDefaultPolicy(builder =>
+                   {
+                       builder.WithOrigins(frontendurl)
+                       .AllowAnyMethod().AllowAnyHeader();
+                   });
+               });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -57,6 +68,7 @@ namespace EC_Proyecto
             }
             app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseCors();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

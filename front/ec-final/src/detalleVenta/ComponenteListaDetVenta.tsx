@@ -1,22 +1,22 @@
 import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { AutoDTO } from "./auto.model";
+import { DetalleVentaDTO } from "./detalleVenta.model";
 
-export default function ComponenteListaAuto() {
+export default function ComponenteListaDetVenta() {
 
   //definimos la direccion del END POINT
-  const url = "https://localhost:44353/ec-proyecto/auto";
+  const url = "https://localhost:44353/ec-proyecto/detventa";
   //creamos una variable y una funcion
   //variable --> categoria
   //funcion --> setCategoria
-  const [auto, setAuto] = useState<AutoDTO[]>();
+  const [detVenta, setDetVenta] = useState<DetalleVentaDTO[]>();
   //se realiza la peticion al API por medio del axios
   const peticionesGet = async () => {
     await axios
       .get(url)
       .then((response) => {
-        setAuto(response.data);
+        setDetVenta(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -29,32 +29,31 @@ export default function ComponenteListaAuto() {
 
   return (
     <div>
-      <h1>Lista de Autos</h1>
+      <h1>Lista de Detalle Ventas</h1>
       <div className="table-responsive">
         <table className="table table-hover table-bordered">
           <thead className="table-dark">
             <tr>
               <th scope="col">Código</th>
-              <th scope="col">Marca</th>
               <th scope="col">Precio</th>
-              <th scope="col">Estado</th>
-              <th scope="col">Codigo Categoria</th>
+              <th scope="col">estado</th>
+              <th scope="col">Codigo Venta</th>
+              <th scope="col"></th>
               <th scope="col"></th>
               <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
             {/* se muestra los datos de la tabla */}
-            {auto?.map((auto) => (
-              <tr key={auto.codigoauto}>
-                <th scope="row">{auto.codigoauto}</th>
-                <td>{auto.marca}</td>
-                <td>{auto.precio}</td>
-                {auto.estado ? <td>Habilitado</td> : <td>Deshabilitado</td>}
-                <td>{auto.codigocatauto}</td>
+            {detVenta?.map((detVenta) => (
+              <tr key={detVenta.codigodetventa}>
+                <th scope="row">{detVenta.codigodetventa}</th>
+                <td>{detVenta.precio}</td>
+                {detVenta.estado ? <td>Habilitado</td> : <td>Deshabilitado</td>}
+                <td>{detVenta.codigoventa}</td>
                 <td>
                   <Link
-                    to={`/autos/actualizar/${auto.codigoauto}`}
+                    to={`/detalleVentas/actualizar/${detVenta.codigodetventa}`}
                     className="btn btn-success"
                   >
                     Actualizar
@@ -72,7 +71,7 @@ export default function ComponenteListaAuto() {
         </table>
       </div>
 
-      <a href="autos/registrar" className="btn btn-primary">
+      <a href="detalleVentas/registrar" className="btn btn-primary">
         Registrar Categoria
       </a>
     </div>

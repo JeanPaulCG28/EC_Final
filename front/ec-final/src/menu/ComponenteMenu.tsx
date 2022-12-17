@@ -21,13 +21,13 @@ export default function ComponenteMenu() {
                             <a className="nav-link" href="/catAutos">Categoria Autos</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Empleados</a>
+                            <a className="nav-link" href="/empleados">Empleados</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Venta</a>
+                            <a className="nav-link" href="/ventas">Venta</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Detalle de Venta</a>
+                            <a className="nav-link" href="/detalleVentas">Detalle de Venta</a>
                         </li>
                     </ul>
                 </div>

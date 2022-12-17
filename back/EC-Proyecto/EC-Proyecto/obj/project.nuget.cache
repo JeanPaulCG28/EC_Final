@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "F66Qr5/3UM8Plp1Wa4/YTFn9xCdW4Ocy3ffT0K8o+LAS4noTKOIw+RwQLW0zLG/K6iqSKrnHyuhWE6BWxW2hwA==",
+  "dgSpecHash": "7M+RpUg9mj/B7LZEL+nZQ7vKHUXE2f2bPFG6vfv44A6t/0g/CFLk+45YfM5LDZxMjsuDk6+VlPY2ScUukUFakw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Familia\\Desktop\\otras cosas\\IDAT4\\2\\Herramientas de Programación 2\\Final\\EC_PROYECTO\\back\\EC-Proyecto\\EC-Proyecto\\EC-Proyecto.csproj",
+  "projectFilePath": "C:\\Users\\Familia\\Desktop\\otras cosas\\IDAT4\\2\\Herramientas de Programación 2\\Proyectos\\EC_FINAL\\EC_Final\\back\\EC-Proyecto\\EC-Proyecto\\EC-Proyecto.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Familia\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Familia\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.17\\microsoft.aspnetcore.authentication.jwtbearer.5.0.17.nupkg.sha512",

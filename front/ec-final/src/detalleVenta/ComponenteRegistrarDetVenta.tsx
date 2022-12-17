@@ -1,54 +1,57 @@
 import { useNavigate } from "react-router-dom";
-import { CategoriaRegistrarDTO } from "./categoria.model";
 import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import ComponenteFormularioCajaTexto from "../utilidad/ComponenteFormularioCajaTexto";
 import { Link } from "react-router-dom";
+import { DetVentaRegistrarDTO } from "./detalleVenta.model";
 
-export default function ComponenteRegistrarCatAuto() {
+export default function ComponenteRegistrarDetVenta() {
     const history = useNavigate();
-    const url = "https://localhost:44353/ec-proyecto/categoria";
-    async function RegistrarCategoria(categoria: CategoriaRegistrarDTO) { 
+    const url = "https://localhost:44353/ec-proyecto/detventa";
+    async function RegistrarDetVenta(detVenta: DetVentaRegistrarDTO) { 
       try {
-        await axios.post(url, categoria);
-        history("/catAutos"); 
+        await axios.post(url, detVenta);
+        history("/detalleVentas"); 
       } catch (error) {
         console.log(error);
       }
     }
+
+
   
     return (
       <div>
-        <h1>Registro Categoria</h1>
+        <h1>Registro Detalle Ventas</h1>
         <Formik
           initialValues={{
-            categoria: "",
-            descripcion: "",
+            precio: "",
             estado: false,
+            codigoventa: Int32Array,
           }}
           onSubmit={async (valores) => {
             await new Promise((r) => setTimeout(r, 3000));
   
-            await RegistrarCategoria({
-              categoria: valores.categoria,
-              descripcion: valores.descripcion,
+            await RegistrarDetVenta({
+              precio: valores.precio,
               estado: valores.estado,
+              codigoventa: valores.codigoventa,
             });
           }}
           validationSchema={Yup.object({
-            categoria: Yup.string()
+            precio: Yup.string()
               .required("Este campo es requerido")
-              .max(100, "La longitud máxima del categoria es 100 caracteres"),
-            descripcion: Yup.string()
+              .max(11, "La longitud máxima de la descripcion es 11 caracteres"),
+            codigoventa: Yup.string()
               .required("Este campo es requerido")
-              .max(300, "La longitud máxima de la descripcion es 300 caracteres"),
           })}
         >
           <Form>
           
-            <ComponenteFormularioCajaTexto campo="categoria" label="Categoria:" />
-            <ComponenteFormularioCajaTexto campo="descripcion" label="Descripcion:" />
+            <ComponenteFormularioCajaTexto campo="precio" label="Precio:" />
+            <ComponenteFormularioCajaTexto campo="codigoventa" label="Venta:" />
+
             <div className="row">
               <div className="col-6">
                 <label className="form-label">Estado:</label>
@@ -67,7 +70,7 @@ export default function ComponenteRegistrarCatAuto() {
                 <button type="submit" className="btn btn-primary">
                   Registrar
                 </button>
-                <Link className="btn btn-secondary" to="/catAutos">
+                <Link className="btn btn-secondary" to="/detalleVentas">
                   Cancelar
                 </Link>
               </div>
