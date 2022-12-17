@@ -18,5 +18,7 @@ namespace EC_Proyecto.Entity
         public string apellido { get; set; }
         [Required]
         public bool estado { get; set; }
+
+        public List<DetalleVenta> detalleVenta { get; set; }
     }
 }

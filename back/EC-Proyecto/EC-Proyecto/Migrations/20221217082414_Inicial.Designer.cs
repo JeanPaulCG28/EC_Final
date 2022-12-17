@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EC_Proyecto.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20221214145553_Inicial")]
+    [Migration("20221217082414_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -110,20 +110,40 @@ namespace EC_Proyecto.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("autocodigoauto")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("clientecodigocli")
+                        .HasColumnType("int");
+
+                    b.Property<int>("codigoauto")
+                        .HasColumnType("int");
+
+                    b.Property<int>("codigocli")
+                        .HasColumnType("int");
+
+                    b.Property<int>("codigoempleado")
+                        .HasColumnType("int");
+
                     b.Property<int>("codigoventa")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("empleadocodigoempleado")
                         .HasColumnType("int");
 
                     b.Property<bool>("estado")
                         .HasColumnType("bit");
 
-                    b.Property<string>("precio")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("ventacodigoventa")
                         .HasColumnType("int");
 
                     b.HasKey("codigodetventa");
+
+                    b.HasIndex("autocodigoauto");
+
+                    b.HasIndex("clientecodigocli");
+
+                    b.HasIndex("empleadocodigoempleado");
 
                     b.HasIndex("ventacodigoventa");
 
@@ -191,16 +211,49 @@ namespace EC_Proyecto.Migrations
 
             modelBuilder.Entity("EC_Proyecto.Entity.DetalleVenta", b =>
                 {
+                    b.HasOne("EC_Proyecto.Entity.Auto", "auto")
+                        .WithMany("detalleVenta")
+                        .HasForeignKey("autocodigoauto");
+
+                    b.HasOne("EC_Proyecto.Entity.Cliente", "cliente")
+                        .WithMany("detalleVenta")
+                        .HasForeignKey("clientecodigocli");
+
+                    b.HasOne("EC_Proyecto.Entity.Empleado", "empleado")
+                        .WithMany("detalleVenta")
+                        .HasForeignKey("empleadocodigoempleado");
+
                     b.HasOne("EC_Proyecto.Entity.Venta", "venta")
                         .WithMany("detalleVenta")
                         .HasForeignKey("ventacodigoventa");
 
+                    b.Navigation("auto");
+
+                    b.Navigation("cliente");
+
+                    b.Navigation("empleado");
+
                     b.Navigation("venta");
+                });
+
+            modelBuilder.Entity("EC_Proyecto.Entity.Auto", b =>
+                {
+                    b.Navigation("detalleVenta");
                 });
 
             modelBuilder.Entity("EC_Proyecto.Entity.CategoriaAuto", b =>
                 {
                     b.Navigation("auto");
+                });
+
+            modelBuilder.Entity("EC_Proyecto.Entity.Cliente", b =>
+                {
+                    b.Navigation("detalleVenta");
+                });
+
+            modelBuilder.Entity("EC_Proyecto.Entity.Empleado", b =>
+                {
+                    b.Navigation("detalleVenta");
                 });
 
             modelBuilder.Entity("EC_Proyecto.Entity.Venta", b =>

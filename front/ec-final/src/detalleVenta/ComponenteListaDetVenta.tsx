@@ -35,10 +35,11 @@ export default function ComponenteListaDetVenta() {
           <thead className="table-dark">
             <tr>
               <th scope="col">Código</th>
-              <th scope="col">Precio</th>
-              <th scope="col">estado</th>
+              <th scope="col">Estado</th>
               <th scope="col">Codigo Venta</th>
-              <th scope="col"></th>
+              <th scope="col">Codigo Empleado</th>
+              <th scope="col">Codigo Cliente</th>
+              <th scope="col">Codigo Auto</th>
               <th scope="col"></th>
               <th scope="col"></th>
             </tr>
@@ -48,9 +49,11 @@ export default function ComponenteListaDetVenta() {
             {detVenta?.map((detVenta) => (
               <tr key={detVenta.codigodetventa}>
                 <th scope="row">{detVenta.codigodetventa}</th>
-                <td>{detVenta.precio}</td>
                 {detVenta.estado ? <td>Habilitado</td> : <td>Deshabilitado</td>}
                 <td>{detVenta.codigoventa}</td>
+                <td>{detVenta.codigoempleado}</td>
+                <td>{detVenta.codigocli}</td>
+                <td>{detVenta.codigoauto}</td>
                 <td>
                   <Link
                     to={`/detalleVentas/actualizar/${detVenta.codigodetventa}`}

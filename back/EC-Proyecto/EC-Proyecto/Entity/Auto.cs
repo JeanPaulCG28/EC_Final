@@ -19,5 +19,7 @@ namespace EC_Proyecto.Entity
         [Required]
         public int codigocatauto { get; set; }
         public CategoriaAuto categoriaAuto { get; set; }
+
+        public List<DetalleVenta> detalleVenta { get; set; }
     }
 }

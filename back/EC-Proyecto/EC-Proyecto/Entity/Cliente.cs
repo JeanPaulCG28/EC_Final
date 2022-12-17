@@ -22,5 +22,7 @@ namespace EC_Proyecto.Entity
         public string telefono { get; set; }
         [Required]
         public bool estado { get; set; }
+
+        public List<DetalleVenta> detalleVenta { get; set; }
     }
 }

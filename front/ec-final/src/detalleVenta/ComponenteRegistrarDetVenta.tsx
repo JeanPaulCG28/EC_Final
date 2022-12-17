@@ -26,31 +26,40 @@ export default function ComponenteRegistrarDetVenta() {
         <h1>Registro Detalle Ventas</h1>
         <Formik
           initialValues={{
-            precio: "",
             estado: false,
             codigoventa: Int32Array,
+            codigoempleado:Int32Array,
+            codigocli:Int32Array,
+            codigoauto:Int32Array,
           }}
           onSubmit={async (valores) => {
             await new Promise((r) => setTimeout(r, 3000));
   
             await RegistrarDetVenta({
-              precio: valores.precio,
               estado: valores.estado,
               codigoventa: valores.codigoventa,
+              codigoempleado:valores.codigoempleado,
+              codigocli: valores.codigocli,
+              codigoauto:valores.codigoauto
             });
           }}
           validationSchema={Yup.object({
-            precio: Yup.string()
-              .required("Este campo es requerido")
-              .max(11, "La longitud máxima de la descripcion es 11 caracteres"),
             codigoventa: Yup.string()
+              .required("Este campo es requerido"),
+            codigoempleado: Yup.string()
+              .required("Este campo es requerido"),
+            codigocli: Yup.string()
+              .required("Este campo es requerido"),
+            codigoauto: Yup.string()
               .required("Este campo es requerido")
           })}
         >
           <Form>
           
-            <ComponenteFormularioCajaTexto campo="precio" label="Precio:" />
-            <ComponenteFormularioCajaTexto campo="codigoventa" label="Venta:" />
+            <ComponenteFormularioCajaTexto campo="codigoventa" label="Codigo Venta:" />
+            <ComponenteFormularioCajaTexto campo="codigoempleado" label="Codigo Empleado:" />
+            <ComponenteFormularioCajaTexto campo="codigocli" label="Codigo Cliente:" />
+            <ComponenteFormularioCajaTexto campo="codigoauto" label="Codigo Auto:" />
 
             <div className="row">
               <div className="col-6">

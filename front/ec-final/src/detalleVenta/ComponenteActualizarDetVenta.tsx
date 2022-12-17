@@ -43,22 +43,23 @@ export default function ComponenteActualizarDetVenta() {
         <Formik
           initialValues={{
             codigodetventa: 0,
-            precio: "",
             estado: false,
             codigoventa: 0,
+            codigoempleado:0,
+            codigocli: 0,
+            codigoauto:0
           }}
           onSubmit={async (valores) => {
             await ActualizarDetVenta({
               codigodetventa: valores.codigodetventa,
-              precio: valores.precio,
               estado: valores.estado,
-              codigoventa: valores.codigoventa
+              codigoventa: valores.codigoventa,
+              codigoempleado: valores.codigoempleado,
+              codigocli: valores.codigocli,
+              codigoauto:valores.codigoauto
             });
           }}
           validationSchema={Yup.object({
-            precio: Yup.string()
-              .required("Este campo es requerido")
-              .max(11, "La longitud máxima de la descripcion es 11 caracteres"),
             codigoventa: Yup.string()
               .required("Este campo es requerido")
           })}
@@ -79,11 +80,11 @@ export default function ComponenteActualizarDetVenta() {
 
             <div className="row">
               <div className="col-6">
-                <label className="form-label">Precio:</label>
+                <label className="form-label">Codigo Venta:</label>
                 <Field
-                  name="precio"
+                  name="codigoventa"
                   type="text"
-                  value={detVenta?.precio}
+                  value={detVenta?.codigoventa}
                   className="form-control"
                 />
               </div>
@@ -91,11 +92,35 @@ export default function ComponenteActualizarDetVenta() {
 
             <div className="row">
               <div className="col-6">
-                <label className="form-label">Venta:</label>
+                <label className="form-label">Codigo Empleado:</label>
                 <Field
-                  name="codigoventa"
+                  name="codigoempleado"
                   type="text"
-                  value={detVenta?.codigoventa}
+                  value={detVenta?.codigoempleado}
+                  className="form-control"
+                />
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-6">
+                <label className="form-label">Codigo Cliente:</label>
+                <Field
+                  name="codigocli"
+                  type="text"
+                  value={detVenta?.codigocli}
+                  className="form-control"
+                />
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-6">
+                <label className="form-label">Codigo Auto:</label>
+                <Field
+                  name="codigoauto"
+                  type="text"
+                  value={detVenta?.codigoauto}
                   className="form-control"
                 />
               </div>
