@@ -28,7 +28,7 @@ export default function ComponentePrincipal() {
                 </button>
             </div>
             <div className="alert alert-success" role="alert" >
-                <h1>Bienvenidos</h1>
+                <center><h1 >Bienvenidos</h1></center>
             </div>
             <div className="row">
             <div className="col-md-6">
